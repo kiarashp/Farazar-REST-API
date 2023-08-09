@@ -1,35 +1,18 @@
 const Product = require('../Models/product');
+const APIFeatures = require('../utilities/apifeatures')
 
 exports.getAllProducts = async (req, res) => {
     try {
-        // Firt step for the filtering
-        const filterquery = { ...req.query }// make a new object, Don't touch the real query
-        const excludedFields = ['page', 'sort', 'limit', 'fields']// remove these fields from the query
-        excludedFields.forEach(element => {
-            delete filterquery[element]
-        });
-        // Second step for the filtering
-        let strQue = JSON.stringify(filterquery)
-        strQue = strQue.replace(/\b(gte|gt|lte|lt)\b/g, match => '$' + match)
-        
-        let query = Product.find(JSON.parse(strQue))
-
-        // Sorting
-        if (req.query.sort){
-            const querySorted = req.query.sort.split(',').join(' ')
-            query = query.sort(querySorted)
-        }else {
-            query.sort('-createdAt')
-        }
-        // Calling query
-        const allProducts = await query;
+        const features = new APIFeatures(Product.find(), req.query).filter().sort().limitFields().paginate()
+        const allProducts = await features.queryMongoose;
         res.status(200).json({
             status: 'success',
             data: {
                 allProducts,
             },
         });
-    } catch (err) {
+    }
+    catch (err) {
         res.status(404).json({
             status: 'fail',
             message: err,
@@ -108,3 +91,91 @@ exports.deleteProduct = async (req, res) => {
     }
 
 };
+exports.topFiveCheap = (req, res, next) => {
+    req.query.limit = '5'
+    req.query.sort = 'price'
+    next()
+}
+
+exports.stats = async (req, res) => {
+    try {
+        const statistics = await Product.aggregate([
+            {
+                $match: { price: { $gt: 1 } } //match documents which has prices more than 1
+            },
+            {
+                $group: {
+                    _id: { $toUpper: '$category' }, //make groups based upon the category
+                    totalProducts: { $sum: 1 }, //sum all products in that group
+                    averagePrices: { $avg: '$price' }, //average of the price in that group
+                    minPrice: { $min: '$price' }, //minimum price of that group
+                    maxPrice: { $max: '$price' } //maximum price of that group
+                }
+            }, { $sort: { totalProducts: 1 } }
+
+
+        ])
+        res.status(200).json({
+            status: 'success',
+            data: {
+                statistics,
+            },
+        });
+    }
+
+    catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err,
+        });
+    }
+}
+exports.perYear = async (req, res) => {
+    try {
+        const year = req.params.year * 1
+        const statsPerYear = await Product.aggregate([
+            {
+                $match: {
+                    myDate: // mathch all documents between the specific year in the url
+                    {
+                        $gte: new Date(`${year}-01-01`),
+                        $lte: new Date(`${year}-12-31`)
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: { $month: '$myDate' }, //grouping based on the month of the value of createdAt
+                    numberofproducts: { $sum: 1 },
+                    products: { $push: '$title' }
+                }
+            }, {
+                $addFields: {
+                    month: '$_id' //add a field named month with the same value as id
+                }
+            },
+            {
+                $project: {
+                    _id: 0 //remove id field
+                }
+            }, {
+                $sort: {
+                    numberofproducts: 1 //remove id field
+                }
+            }
+        ])
+        res.status(200).json({
+            status: 'success',
+            data: {
+                statsPerYear,
+            },
+        });
+    }
+
+    catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err,
+        });
+    }
+}

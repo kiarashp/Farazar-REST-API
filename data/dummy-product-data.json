@@ -1,0 +1,128 @@
+[
+  {
+      "_id": "64d20bcf5355fcdd26620645",
+      "title": "some fiberglass product",
+      "content": "content of the products",
+      "category": "fiberglass",
+      "price": 109,
+      "images": [],
+      "createdAt": "2023-08-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d207b2c5c2e8c9d308cef4",
+      "title": "this is a dummy ceramic products",
+      "content": "content of the products",
+      "category": "ceramic",
+      "price": 2,
+      "images": [],
+      "createdAt": "2023-08-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d20a9d5355fcdd26620632",
+      "title": "some the same product",
+      "content": "content of the products",
+      "category": "fiberglass",
+      "price": 110,
+      "images": [],
+      "createdAt": "2023-07-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d20abe5355fcdd26620634",
+      "title": "some ceramic product",
+      "content": "content of the products",
+      "category": "ceramic",
+      "price": 110,
+      "images": [],
+      "createdAt": "2023-06-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d20b2e5355fcdd2662063c",
+      "title": "some ceramic product2",
+      "content": "content of the products",
+      "category": "ceramic",
+      "price": 110,
+      "images": [],
+      "createdAt": "2023-05-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d165bb88e8937fda6d1a1f",
+      "title": "ceramics products",
+      "content": "content of the products",
+      "category": "ceramic",
+      "price": 10,
+      "images": [],
+      "createdAt": "2023-05-01T12:45:39.285Z"
+  },
+  {
+      "_id": "64d20b345355fcdd2662063e",
+      "title": "some ceramic product3",
+      "content": "content of the products",
+      "category": "ceramic",
+      "price": 110,
+      "images": [],
+      "createdAt": "2023-04-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d20a825355fcdd26620630",
+      "title": "some product",
+      "content": "content of the products",
+      "category": "others",
+      "price": 110,
+      "images": [],
+      "createdAt": "2023-03-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d22a8693cd7d831deb3a15",
+      "title": "booya fiberglass product",
+      "content": "content of the products",
+      "category": "fiberglass",
+      "price": 200,
+      "images": [],
+      "createdAt": "2023-02-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d207cec5c2e8c9d308cef6",
+      "title": "tell me i am a product",
+      "content": "content of the products",
+      "category": "others",
+      "price": 109,
+      "images": [],
+      "createdAt": "2023-01-09T09:45:39.285Z"
+  },
+  {
+      "_id": "64d20824c5c2e8c9d308cef8",
+      "title": "the others product",
+      "content": "content of the products",
+      "category": "others",
+      "price": 22.36,
+      "images": [],
+      "createdAt": "2023-01-01T09:45:39.285Z"
+  },
+  {
+      "_id": "64d1656888e8937fda6d1a18",
+      "title": "first product",
+      "content": "content of the products",
+      "category": "others",
+      "price": 50.21,
+      "images": [],
+      "createdAt": "2022-12-31T12:45:39.285Z"
+  },
+  {
+      "_id": "64d1659588e8937fda6d1a1c",
+      "title": "fiber product",
+      "content": "content of the products",
+      "category": "fiberglass",
+      "price": 31.21,
+      "images": [],
+      "createdAt": "2022-12-01T12:45:39.285Z"
+  },
+  {
+      "_id": "64d1658788e8937fda6d1a1a",
+      "title": "first product",
+      "content": "content of the products",
+      "category": "fiberglass",
+      "price": 59.21,
+      "images": [],
+      "createdAt": "2022-10-31T12:45:39.285Z"
+  }
+]
