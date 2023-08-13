@@ -21,7 +21,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use('/api/v1/blogs', blogRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);

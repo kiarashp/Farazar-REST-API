@@ -45,7 +45,7 @@ exports.getProduct = catchAsync(async (req, res,next) => {
 exports.updateProduct = catchAsync(async (req, res,next) => {
     const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
-        runValidators: true
+        runValidators: false
     });
     res.status(200).json({
         status: 'success',
