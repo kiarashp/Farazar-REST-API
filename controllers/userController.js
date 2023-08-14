@@ -1,13 +1,3 @@
-// exports.checkId = (req, res, next, val) => {
-//   console.log(`this is the id ${val} that you sent`);
-//   if (!req.params.id) {
-//     return res.status(404).json({
-//       status: 'fail',
-//       message: 'bad id number',
-//     });
-//   }
-//   next();
-// };
 
 exports.getAllUsers = (req, res) => {
   res.status(200).json({

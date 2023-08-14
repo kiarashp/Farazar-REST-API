@@ -38,7 +38,7 @@ const ValidationErrorHandler = (err)=>{
   })
   err.statusCode = 400
   err.status = 'fail'
-  err.message = `You entered invalid value ${errarray.join(', ')} )`
+  err.message = `You entered an invalid data. ${errarray.join(', ')}`
   err.isOperational = true
 }
 
