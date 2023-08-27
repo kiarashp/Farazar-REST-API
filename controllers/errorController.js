@@ -32,6 +32,16 @@ const castErrorHandler = (err)=>{
   err.message = `You added an invalid value ${err.value} for this field ${err.path})`
   err.isOperational = true
 }
+const JwtErrorHandler = (err)=>{
+  err.message = 'invalid Token. Please login and try again.'
+  err.statusCode = 401
+  err.isOperational = true
+}
+const JwtExpiredErrorHandler = (err)=>{
+  err.message = 'The Token has been expired. Please login and try again.'
+  err.statusCode = 401
+  err.isOperational = true
+}
 const ValidationErrorHandler = (err)=>{
   errarray = Object.values(err.errors).map(el=>{
     return el.message
@@ -50,6 +60,9 @@ module.exports = ((err, req, res, next) => {
   } else if (process.env.NODE_ENV === 'production') {
     if (err.name === 'CastError') castErrorHandler(err)
     if (err.name === 'ValidationError') ValidationErrorHandler(err)
+    if( err.name === 'JsonWebTokenError') JwtErrorHandler(err)
+    if( err.name === 'TokenExpiredError') JwtExpiredErrorHandler(err)
+
     productionModErr(err, res)
   }
 })
